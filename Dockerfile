@@ -1,5 +1,9 @@
 ARG CADDY_VERSION=2.10.0
-FROM caddy:${CADDY_VERSION}-builder AS builder
+ARG GO_VERSION=1.26
+
+FROM golang:${GO_VERSION} AS builder
+
+RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 
 RUN xcaddy build \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
@@ -7,6 +11,6 @@ RUN xcaddy build \
 
 FROM caddy:${CADDY_VERSION}-alpine
 
-COPY --from=builder /usr/bin/caddy /usr/bin/caddy
+COPY --from=builder /go/caddy /usr/bin/caddy
 
 CMD ["caddy", "docker-proxy"]
