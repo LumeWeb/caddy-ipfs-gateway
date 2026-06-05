@@ -12,7 +12,8 @@ RUN go install github.com/caddyserver/xcaddy/cmd/xcaddy@latest
 RUN xcaddy build v${CADDY_VERSION} \
     --with github.com/lucaslorentz/caddy-docker-proxy/v2 \
     --with github.com/pberkel/caddy-storage-redis \
-    --with go.lumeweb.com/caddy-plugin-cert-webhook
+    --with go.lumeweb.com/caddy-plugin-cert-webhook \
+    --with github.com/xorfox-llc/caddy-otlp-logs
 
 FROM caddy:${CADDY_VERSION}-alpine
 
