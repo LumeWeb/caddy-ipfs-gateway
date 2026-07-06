@@ -16,7 +16,7 @@ RUN xcaddy build v${CADDY_VERSION} \
     --with github.com/pberkel/caddy-storage-redis \
     --with go.lumeweb.com/caddy-plugin-cert-webhook@develop \
     --with github.com/xorfox-llc/caddy-otlp-logs \
-    --with github.com/mohammed90/caddy_profiling@v0.2.2
+    --with go.lumeweb.com/caddy_profiling
 
 FROM caddy:${CADDY_VERSION}-alpine
 
